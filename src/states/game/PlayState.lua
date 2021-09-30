@@ -37,11 +37,4 @@ end
 
 function PlayState:render()
     self.level:render()
-
-    -- DEBUG remove below print() commands before pushing to cs50g
-    love.graphics.setFont(gFonts['small'])
-    love.graphics.print('HP: ' .. tostring(self.level.player.party.pokemon[1].HP), 5, 5)
-    love.graphics.print('Attack: ' .. tostring(self.level.player.party.pokemon[1].attack), 5, 15)
-    love.graphics.print('Defense: ' .. tostring(self.level.player.party.pokemon[1].defense), 5, 25)
-    love.graphics.print('Speed: ' .. tostring(self.level.player.party.pokemon[1].speed), 5, 35)
 end

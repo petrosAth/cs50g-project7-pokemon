@@ -53,8 +53,6 @@ function love.load()
         resizable = true
     })
 
-    love.audio.setVolume(0.05)  -- DEBUG remove the line before pushing to cs50g
-
     -- this time, we are using a stack for all of our states, where the field state is the
     -- foundational state; it will have its behavior preserved between state changes because
     -- it is essentially being placed "behind" other running states as needed (like the battle
