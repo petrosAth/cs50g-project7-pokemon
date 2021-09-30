@@ -13,7 +13,7 @@ function Player:init(def)
 
     self.party = Party {
         pokemon = {
-            Pokemon(Pokemon.getRandomDef(), 20) -- DEBUG change to 5 before pushing to cs50g
+            Pokemon(Pokemon.getRandomDef(), 5) -- DEBUG change to 5 before pushing to cs50g
         }
     }
 end

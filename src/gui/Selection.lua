@@ -15,6 +15,7 @@ Selection = Class{}
 
 function Selection:init(def)
     self.items = def.items
+    self.selectable = def.selectable
     self.x = def.x
     self.y = def.y
 
@@ -28,27 +29,27 @@ function Selection:init(def)
 end
 
 function Selection:update(dt)
-    if love.keyboard.wasPressed('up') then
+    if love.keyboard.wasPressed('up') and self.selectable then
         if self.currentSelection == 1 then
             self.currentSelection = #self.items
         else
             self.currentSelection = self.currentSelection - 1
         end
-        
+
         gSounds['blip']:stop()
         gSounds['blip']:play()
-    elseif love.keyboard.wasPressed('down') then
+    elseif love.keyboard.wasPressed('down') and self.selectable then
         if self.currentSelection == #self.items then
             self.currentSelection = 1
         else
             self.currentSelection = self.currentSelection + 1
         end
-        
+
         gSounds['blip']:stop()
         gSounds['blip']:play()
     elseif love.keyboard.wasPressed('return') or love.keyboard.wasPressed('enter') then
         self.items[self.currentSelection].onSelect()
-        
+
         gSounds['blip']:stop()
         gSounds['blip']:play()
     end
@@ -60,9 +61,11 @@ function Selection:render()
     for i = 1, #self.items do
         local paddedY = currentY + (self.gapHeight / 2) - self.font:getHeight() / 2
 
-        -- draw selection marker if we're at the right index
-        if i == self.currentSelection then
-            love.graphics.draw(gTextures['cursor'], self.x - 8, paddedY)
+        if self.selectable then
+            -- draw selection marker if we're at the right index
+            if i == self.currentSelection then
+                love.graphics.draw(gTextures['cursor'], self.x - 8, paddedY)
+            end
         end
 
         love.graphics.printf(self.items[i].text, self.x, paddedY, self.width, 'center')
